@@ -1,33 +1,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_root_splash"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-	android:id="@+id/rl_root_splash"
-    android:background="@drawable/launcher_bg"
-     >
+    android:background="@drawable/launcher_bg" >
 
     <TextView
         android:id="@+id/tv_splash_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textSize="22sp"
         android:shadowColor="#ff0000"
         android:shadowDx="1"
         android:shadowDy="1"
-        android:shadowRadius="1"/>
+        android:shadowRadius="1"
+        android:textSize="22sp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo_bg"
         android:layout_above="@id/tv_splash_version"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="62dp"/>
+        android:layout_marginBottom="62dp"
+        android:src="@drawable/logo_bg" />
 
-    <ProgressBar 
+    <ProgressBar
+        android:id="@+id/pb_splash_load"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_splash_version"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        android:id="@+id/pb_splash_loading"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/pb_splash_load"
+        android:layout_below="@+id/pb_splash_load"
+        android:layout_marginTop="72dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/pb_splash_loading"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/pb_splash_loading"
+        android:text="加载中"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
 </RelativeLayout>
