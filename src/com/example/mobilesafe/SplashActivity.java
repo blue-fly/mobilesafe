@@ -21,6 +21,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -50,7 +51,8 @@ public class SplashActivity extends Activity {
 
 	private String description;
 	private String apkurl;
-
+	private SharedPreferences sp;
+	
 	private Handler handler = new Handler() {
 
 		@Override
@@ -197,7 +199,24 @@ public class SplashActivity extends Activity {
 		AlphaAnimation aa = new AlphaAnimation(0.2f, 1.0f);
 		aa.setDuration(1000);
 		findViewById(R.id.rl_root_splash).startAnimation(aa);
-		checkUpdate();
+		sp=getSharedPreferences("config", MODE_PRIVATE);
+		boolean check=sp.getBoolean("check", false);
+		
+		if(check){
+			//自动更新
+			checkUpdate();
+		}else{
+			//关闭了自动更新
+			handler.postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					//进入主界面
+					enterHome();
+				}
+			}, 2000);
+		}
+		
 	}
 
 	/**
@@ -265,7 +284,15 @@ public class SplashActivity extends Activity {
 							}
 
 						} else {
-							Log.d(TAG, "联网失败");
+							//Log.d(TAG, "联网失败");
+							//在没有网络的状态下，先sleep再跳转到主界面
+							try {
+								Thread.sleep(2000);
+								enterHome();
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							
 						}
 
 					} catch (IOException e) {

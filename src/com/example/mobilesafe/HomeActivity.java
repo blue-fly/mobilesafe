@@ -1,9 +1,12 @@
 package com.example.mobilesafe;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -36,6 +39,24 @@ public class HomeActivity extends Activity {
 		gv_home_gridview=(GridView) findViewById(R.id.gv_home_gridview);
 		adapter=new myAdapter();
 		gv_home_gridview.setAdapter(adapter);
+		//点击按钮的监听器
+		gv_home_gridview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				switch (position) {
+				case 8:
+					//设置中心
+					Intent i=new Intent(HomeActivity.this,SettingActivity.class);
+					startActivity(i);
+					break;
+
+				default:
+					break;
+				}
+			}
+		});
 	}
 
 	private class myAdapter extends BaseAdapter{
