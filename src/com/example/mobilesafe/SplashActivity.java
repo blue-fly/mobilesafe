@@ -18,6 +18,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -100,7 +101,18 @@ public class SplashActivity extends Activity {
 	protected void showUpdateDialog() {
 		AlertDialog.Builder builder = new Builder(SplashActivity.this);
 		builder.setMessage(description);
-		builder.setCancelable(false);
+		//builder.setCancelable(false);
+		
+		//点击返回按键时直接进入主界面
+		builder.setOnCancelListener(new OnCancelListener() {
+			
+			@Override
+			public void onCancel(DialogInterface dialog) {
+				enterHome();
+				dialog.dismiss();
+			}
+		});
+		
 		builder.setPositiveButton("马上升级", new OnClickListener() {
 
 			@Override

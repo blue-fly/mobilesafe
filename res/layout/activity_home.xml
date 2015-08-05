@@ -6,8 +6,30 @@
 
     <TextView
         android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="60dip"    
+        android:gravity="center"    
+        android:background="#8866ff00"
+        android:text="功能列表" 
+        android:textSize="26sp"
+        />
+    
+    <com.example.mobilesafe.ui.FocusedTextView 
+        android:singleLine="true"
+        android:ellipsize="marquee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="发现新版本了，大哥快去升级吧！！！！"
+        android:textSize="20dip"
+        />
+    
+    <GridView 
+        android:id="@+id/gv_home_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dip"
+        android:numColumns="3"
+        android:verticalSpacing="5dip"
+        />
 
 </LinearLayout>
