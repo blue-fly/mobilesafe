@@ -21,6 +21,8 @@ public class SettingItemView extends RelativeLayout {
 	private TextView tv_desc;
 	private CheckBox cb_status;
 
+	private String desc_on;
+	private String desc_off;
 	/*
 	 * 初始化视图
 	 */
@@ -40,6 +42,13 @@ public class SettingItemView extends RelativeLayout {
 	public SettingItemView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView(context);
+		
+		//获取xml中定义的属性值
+		String title=attrs.getAttributeValue("http://schemas.android.com/apk/res/com.example.mobilesafe","title");
+		desc_on=attrs.getAttributeValue("http://schemas.android.com/apk/res/com.example.mobilesafe", "desc_on");
+		desc_off=attrs.getAttributeValue("http://schemas.android.com/apk/res/com.example.mobilesafe", "desc_off");
+		
+		tv_title.setText(title);
 	}
 
 	public SettingItemView(Context context) {
@@ -58,6 +67,11 @@ public class SettingItemView extends RelativeLayout {
 	 * 设置组合控件的状态
 	 */
 	public void setChecked(boolean check) {
+		if(check){
+			setDesc(desc_on);
+		}else{
+			setDesc(desc_off);
+		}
 		cb_status.setChecked(check);
 	}
 

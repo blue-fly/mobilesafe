@@ -27,10 +27,10 @@ public class SettingActivity extends Activity {
 		
 		if(check){
 			siv_update.setChecked(true);
-			siv_update.setDesc("自动更新已经开启");
+//			siv_update.setDesc("自动更新已经开启");
 		}else{
 			siv_update.setChecked(false);
-			siv_update.setDesc("自动更新已经关闭");
+//			siv_update.setDesc("自动更新已经关闭");
 		}
 		
 		//设置整个自定义界面的点击事件
@@ -42,12 +42,12 @@ public class SettingActivity extends Activity {
 				//如果已经点击了
 				if(siv_update.isChecked()){
 					siv_update.setChecked(false);
-					siv_update.setDesc("自动更新已经关闭");
+//					siv_update.setDesc("自动更新已经关闭");
 					edit.putBoolean("check", false);
 					
 				}else{
 					siv_update.setChecked(true);
-					siv_update.setDesc("自动更新已经开启");
+//					siv_update.setDesc("自动更新已经开启");
 					edit.putBoolean("check", true);
 				}
 				edit.commit();
