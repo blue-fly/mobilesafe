@@ -10,7 +10,7 @@ import android.view.View;
  * @author Administrator
  *
  */
-public class Setup3Activity extends Activity {
+public class Setup3Activity extends BaseSetupActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,13 +19,25 @@ public class Setup3Activity extends Activity {
 	}
 	
 	public void next(View view){
+		showNext();
+	}
+	public void pref(View view){
+		showPref();
+	}
+
+	@Override
+	public void showNext() {
 		Intent i=new Intent(Setup3Activity.this,Setup4Activity.class);
 		startActivity(i);
 		finish();
+		overridePendingTransition(R.anim.page_exit, 0);
 	}
-	public void pref(View view){
+
+	@Override
+	public void showPref() {
 		Intent i=new Intent(Setup3Activity.this,Setup2Activity.class);
 		startActivity(i);
 		finish();
+		overridePendingTransition(R.anim.page_jump, 0);
 	}
 }

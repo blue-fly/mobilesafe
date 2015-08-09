@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 /**
  * 手机防盗页面
@@ -14,6 +17,7 @@ import android.os.Bundle;
 public class LostFindActivity extends Activity {
 	
 	private SharedPreferences sp;
+	private TextView tv_lost_set;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,17 @@ public class LostFindActivity extends Activity {
 			startActivity(i);
 			finish();
 		}
+		
+		tv_lost_set=(TextView) findViewById(R.id.tv_lost_set);
+		tv_lost_set.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				//重新进入向导
+				Intent i=new Intent(LostFindActivity.this,Setup1Activity.class);
+				startActivity(i);
+			}
+		});
 		
 	}
 }

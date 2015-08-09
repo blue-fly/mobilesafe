@@ -79,11 +79,14 @@
         android:layout_height="50dip" >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_lost_set"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:gravity="center"
             android:layout_marginLeft="10dip"
             android:layout_marginTop="10dip"
+            android:background="@drawable/gradient_box"
             android:text="重新进入设置向导"
             android:textSize="22sp" />
 

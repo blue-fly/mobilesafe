@@ -15,7 +15,7 @@ import com.example.mobilesafe.ui.SettingItemView;
  * @author Administrator
  *
  */
-public class Setup2Activity extends Activity {
+public class Setup2Activity extends BaseSetupActivity {
 	
 	private SettingItemView siv_sim;
 	private SharedPreferences sp;
@@ -60,13 +60,25 @@ public class Setup2Activity extends Activity {
 	}
 	
 	public void next(View view){
+		showNext();
+	}
+	public void pref(View view){
+		showPref();
+	}
+
+	@Override
+	public void showNext() {
 		Intent i=new Intent(Setup2Activity.this,Setup3Activity.class);
 		startActivity(i);
 		finish();
+		overridePendingTransition(R.anim.page_exit, 0);
 	}
-	public void pref(View view){
+
+	@Override
+	public void showPref() {
 		Intent i=new Intent(Setup2Activity.this,Setup1Activity.class);
 		startActivity(i);
 		finish();
+		overridePendingTransition(R.anim.page_jump, 0);
 	}
 }

@@ -12,7 +12,7 @@ import android.view.View;
  * @author Administrator
  *
  */
-public class Setup4Activity extends Activity {
+public class Setup4Activity extends BaseSetupActivity {
 	
 	
 	private SharedPreferences sp;
@@ -25,17 +25,29 @@ public class Setup4Activity extends Activity {
 	}
 	
 	public void next(View view){
+		showNext();
+	}
+	
+	public void pref(View view){
+		showPref();
+	}
+
+	@Override
+	public void showNext() {
 		Editor editor=sp.edit();
 		editor.putBoolean("seted", true);
 		editor.commit();
 		Intent i=new Intent(Setup4Activity.this,LostFindActivity.class);
 		startActivity(i);
 		finish();
+		overridePendingTransition(R.anim.page_exit, 0);
 	}
-	
-	public void pref(View view){
+
+	@Override
+	public void showPref() {
 		Intent i=new Intent(Setup4Activity.this,Setup3Activity.class);
 		startActivity(i);
 		finish();
+		overridePendingTransition(R.anim.page_jump, 0);
 	}
 }
