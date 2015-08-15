@@ -27,6 +27,7 @@
             android:textSize="22sp" />
 
         <TextView
+            android:id="@+id/tv_lost_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -58,6 +59,7 @@
             android:textSize="22sp" />
 
         <TextView
+            android:id="@+id/tv_lost_lock"
             android:layout_width="28dip"
             android:layout_height="28dip"
             android:layout_alignParentRight="true"
@@ -79,7 +81,7 @@
         android:layout_height="50dip" >
 
         <TextView
-            android:id="@+id/tv_lost_set"
+            android:id="@+id/tv_lost_again"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -112,18 +114,18 @@
     <TextView
         style="@style/content_setup_textview"
         android:layout_height="wrap_content"
-        android:text="GPS追踪" />
+        android:text="GPS追踪:             #*location*#" />
 
     <TextView
         style="@style/content_setup_textview"
-        android:text="播放报警音乐" />
+        android:text="播放报警音乐:     #*alarm*#" />
 
     <TextView
         style="@style/content_setup_textview"
-        android:text="远程删除数据" />
+        android:text="远程删除数据:     #*wipedata*#" />
 
     <TextView
         style="@style/content_setup_textview"
-        android:text="远程锁屏" />
+        android:text="远程锁屏:     #*lockscreen*#" />
 
 </LinearLayout>

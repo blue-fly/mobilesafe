@@ -32,9 +32,9 @@ public class Setup1Activity extends BaseSetupActivity {
 	public void showNext() {
 		Intent i = new Intent(Setup1Activity.this, Setup2Activity.class);
 		startActivity(i);
-		finish();
 		// 必须在startActivity或finish之后再调用这个过渡动画方法
-		overridePendingTransition(R.anim.page_exit, 0);
+		overridePendingTransition(R.anim.page_next, R.anim.page_exit);
+		finish();
 	}
 
 	@Override

@@ -5,8 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.provider.Telephony;
+import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 import com.example.mobilesafe.ui.SettingItemView;
 
@@ -18,7 +22,7 @@ import com.example.mobilesafe.ui.SettingItemView;
 public class Setup2Activity extends BaseSetupActivity {
 	
 	private SettingItemView siv_sim;
-	private SharedPreferences sp;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +30,15 @@ public class Setup2Activity extends BaseSetupActivity {
 		setContentView(R.layout.activity_setup2);
 		
 		siv_sim=(SettingItemView) findViewById(R.id.siv_sim);
-		sp=getSharedPreferences("config", MODE_PRIVATE);
-		boolean check=sp.getBoolean("sim", false);
+		
+		String check=sp.getString("sim", "");
+		
+		//获取手机信息管理器
+		final TelephonyManager manager=(TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+		
 		
 		//初始化选择视图
-		if(check){
+		if(!TextUtils.isEmpty(check)){
 			siv_sim.setChecked(true);
 			siv_sim.setDesc("sim卡已经绑定");
 		}else{
@@ -47,10 +55,12 @@ public class Setup2Activity extends BaseSetupActivity {
 				//判断是否是选中状态，如果是，则取消选中
 				if(siv_sim.isChecked()){
 					siv_sim.setChecked(false);
-					editor.putBoolean("sim", false);
+					editor.putString("sim", "");
 				}else{
 					siv_sim.setChecked(true);
-					editor.putBoolean("sim", true);
+					//获取手机序列号
+					String sim=manager.getSimSerialNumber();
+					editor.putString("sim", sim);
 				}
 				
 				editor.commit();
@@ -68,17 +78,22 @@ public class Setup2Activity extends BaseSetupActivity {
 
 	@Override
 	public void showNext() {
+		//只有选中了sim卡才能下一步
+		if(!siv_sim.isChecked()){
+			Toast.makeText(this,"请绑定sim卡",Toast.LENGTH_SHORT).show();
+			return;
+		}
 		Intent i=new Intent(Setup2Activity.this,Setup3Activity.class);
 		startActivity(i);
+		overridePendingTransition(R.anim.page_next, R.anim.page_exit);
 		finish();
-		overridePendingTransition(R.anim.page_exit, 0);
 	}
 
 	@Override
 	public void showPref() {
 		Intent i=new Intent(Setup2Activity.this,Setup1Activity.class);
 		startActivity(i);
+		overridePendingTransition(R.anim.page_pref, 0);
 		finish();
-		overridePendingTransition(R.anim.page_jump, 0);
 	}
 }

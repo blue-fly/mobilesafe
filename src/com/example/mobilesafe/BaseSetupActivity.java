@@ -1,6 +1,7 @@
 package com.example.mobilesafe;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -10,6 +11,8 @@ public abstract class BaseSetupActivity extends Activity {
 	
 	
 	private GestureDetector gd;
+	protected SharedPreferences sp;
+	
 	//在子类中实现切换页面
 	public abstract void showNext();
 	public abstract void showPref();
@@ -17,6 +20,7 @@ public abstract class BaseSetupActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		sp=getSharedPreferences("config", MODE_PRIVATE);
 		
 		gd = new GestureDetector(this,
 				new GestureDetector.SimpleOnGestureListener() {
@@ -30,12 +34,12 @@ public abstract class BaseSetupActivity extends Activity {
 
 						//如果上下滑动幅度太大就忽略
 						if(Math.abs(e2.getRawY()-e1.getRawY())>100){
-							Toast.makeText(getApplicationContext(), "滑动无效", 0).show();		
+							Toast.makeText(getApplicationContext(), "滑动无效", Toast.LENGTH_SHORT).show();
 							return true;
 						}
 						//如果滑动速度太慢就忽略
 						if(Math.abs(velocityX)<200){
-							Toast.makeText(getApplicationContext(), "滑动无效", 0).show();		
+							Toast.makeText(getApplicationContext(), "滑动无效", Toast.LENGTH_SHORT).show();
 							return true;
 						}
 						
